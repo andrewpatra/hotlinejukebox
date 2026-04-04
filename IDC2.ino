@@ -17,7 +17,7 @@ Adafruit_Keypad customKeypad = Adafruit_Keypad( makeKeymap(keys), rowPins, colPi
 
 #if (defined(ARDUINO_AVR_UNO) || defined(ESP8266))  // Using a soft serial port
 #include <SoftwareSerial.h>
-SoftwareSerial softSerial(/*rx =*/4, /*tx =*/5);
+SoftwareSerial softSerial(/*rx =*/6, /*tx =*/7);
 #define FPSerial softSerial
 #else
 #define FPSerial Serial1
@@ -27,6 +27,9 @@ DFRobotDFPlayerMini myDFPlayer;
 void printDetail(uint8_t type, int value);
 const int ledPin = 13;
 int currentTrack = -1;
+
+long dialNum = 0;      // Stores the current built number
+int digitCount = 0;    // Tracks how many digits have been pressed
 
 void setup() {
 #if (defined ESP32)
@@ -75,79 +78,140 @@ void loop() {
 
   while(customKeypad.available()){
     keypadEvent e = customKeypad.read();
-    Serial.print((char)e.bit.KEY);
-    if(e.bit.EVENT == KEY_JUST_PRESSED) Serial.println(" pressed");
-    else if(e.bit.EVENT == KEY_JUST_RELEASED) Serial.println(" released");
-  }
-  
-  // read the input on analog pin 0:
-  int sensorValue = analogRead(A0);
-  // print out the value you read:
-  Serial.println(sensorValue);
-  delay(50);  // delay in between reads for stability
-
-  if (sensorValue < 20) {
-    myDFPlayer.pause();
-  }
-
-  else if (sensorValue > 50 && sensorValue < 90) {
-    if (currentTrack != 1) { 
+    
+    // Only process when the key is first pressed
+    if(e.bit.EVENT == KEY_JUST_PRESSED) {
+      char key = (char)e.bit.KEY;
       myDFPlayer.playMp3Folder(1);
-      currentTrack = 1;
-    } 
+      Serial.print(key);
+      Serial.println(" pressed");
+
+      // Check if the key is a number (0-9)
+      if (key >= '0' && key <= '9') {
+        int val = key - '0'; // Convert char to actual integer
+        
+        // Build the number: shift existing digits left and add new one
+        dialNum = (dialNum * 10) + val;
+        digitCount++;
+
+        Serial.print("Current dialNum: ");
+        Serial.println(dialNum);
+      }
+
+      if (digitCount >= 6) {
+        myDFPlayer.playMp3Folder(2);
+        dialNum = 0;
+        digitCount = 0; 
+      }
+
+      if (key == '*') {
+        dialNum = 0;
+        digitCount = 0;
+      }
+    }
   }
 
-  else if (sensorValue > 120 && sensorValue < 160) {
+  if (digitCount == 5 && dialNum == 95378) {
+    if (currentTrack != 3) { 
+      myDFPlayer.playMp3Folder(3);
+      currentTrack = 3;
+    }
+    dialNum = 0;
+    digitCount = 0; 
+  }
+
+  if (digitCount == 5 && dialNum == 24512) {
+    if (currentTrack != 4) { 
+      myDFPlayer.playMp3Folder(4);
+      currentTrack = 4;
+    }
+    dialNum = 0;
+    digitCount = 0; 
+  }
+
+  if (digitCount == 5 && dialNum == 54343) {
+    if (currentTrack != 5) { 
+      myDFPlayer.playMp3Folder(5);
+      currentTrack = 5;
+    }
+    dialNum = 0;
+    digitCount = 0; 
+  }
+
+  if (digitCount == 5 && dialNum == 48368) {
     if (currentTrack != 6) { 
       myDFPlayer.playMp3Folder(6);
       currentTrack = 6;
     }
+    dialNum = 0;
+    digitCount = 0; 
   }
 
-  else if (sensorValue > 200 && sensorValue < 240) {
-     if (currentTrack != 2) { 
-      myDFPlayer.playMp3Folder(2);
-      currentTrack = 2;
-    }
-  }
-
-  else if (sensorValue > 280 && sensorValue < 320) {
-     if (currentTrack != 3) { 
-      myDFPlayer.playMp3Folder(3);
-      currentTrack = 3;
-    }
-  }
-
-   else if (sensorValue > 360 && sensorValue < 400) {
-     if (currentTrack != 4) { 
-      myDFPlayer.playMp3Folder(4);
-      currentTrack = 4;
-    }
-  }
-
-   else if (sensorValue > 440 && sensorValue < 480) {
-     if (currentTrack != 5) { 
-      myDFPlayer.playMp3Folder(5);
-      currentTrack = 5;
-    }
-  }
-
-   else if (sensorValue > 520 && sensorValue < 560) {
-     if (currentTrack != 7) { 
+  if (digitCount == 5 && dialNum == 87465) {
+    if (currentTrack != 7) { 
       myDFPlayer.playMp3Folder(7);
       currentTrack = 7;
     }
+    dialNum = 0;
+    digitCount = 0; 
   }
 
-   else if (sensorValue > 600 && sensorValue < 640) {
-     if (currentTrack != 8) { 
+  if (digitCount == 5 && dialNum == 22947) {
+    if (currentTrack != 8) { 
       myDFPlayer.playMp3Folder(8);
       currentTrack = 8;
     }
+    dialNum = 0;
+    digitCount = 0; 
+  }
+
+  if (digitCount == 5 && dialNum == 41287) {
+    if (currentTrack != 9) { 
+      myDFPlayer.playMp3Folder(9);
+      currentTrack = 9;
+    }
+    dialNum = 0;
+    digitCount = 0; 
+  }
+
+  if (digitCount == 5 && dialNum == 10554) {
+    if (currentTrack != 10) { 
+      myDFPlayer.playMp3Folder(10);
+      currentTrack = 10;
+    }
+    dialNum = 0;
+    digitCount = 0; 
+  }
+
+  if (digitCount == 5 && dialNum == 39568) {
+    if (currentTrack != 11) { 
+      myDFPlayer.playMp3Folder(11);
+      currentTrack = 11;
+    }
+    dialNum = 0;
+    digitCount = 0; 
+  }
+
+  if (digitCount == 5 && dialNum == 32485) {
+    if (currentTrack != 12) { 
+      myDFPlayer.playMp3Folder(12);
+      currentTrack = 12;
+    }
+    dialNum = 0;
+    digitCount = 0; 
+  }
+
+  if (digitCount == 5 && dialNum == 00067) {
+    if (currentTrack != 13) { 
+      myDFPlayer.playMp3Folder(13);
+      currentTrack = 13;
+    }
+    dialNum = 0;
+    digitCount = 0; 
   }
 
   if (myDFPlayer.available()) {
-    printDetail(myDFPlayer.readType(), myDFPlayer.read());  //Print the detail message from DFPlayer to handle different errors and states.
+    printDetail(myDFPlayer.readType(), myDFPlayer.read());
     digitalWrite(ledPin, HIGH);
   }
 }
