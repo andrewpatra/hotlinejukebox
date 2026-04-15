@@ -112,103 +112,82 @@ void loop() {
   }
 
   if (digitCount == 5 && dialNum == 95378) {
-    if (currentTrack != 3) { 
       myDFPlayer.playMp3Folder(3);
       currentTrack = 3;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
   if (digitCount == 5 && dialNum == 24512) {
-    if (currentTrack != 4) { 
       myDFPlayer.playMp3Folder(4);
       currentTrack = 4;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
   if (digitCount == 5 && dialNum == 54343) {
-    if (currentTrack != 5) { 
       myDFPlayer.playMp3Folder(5);
       currentTrack = 5;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
   if (digitCount == 5 && dialNum == 48368) {
-    if (currentTrack != 6) { 
       myDFPlayer.playMp3Folder(6);
       currentTrack = 6;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
   if (digitCount == 5 && dialNum == 87465) {
-    if (currentTrack != 7) { 
       myDFPlayer.playMp3Folder(7);
       currentTrack = 7;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
   if (digitCount == 5 && dialNum == 22947) {
-    if (currentTrack != 8) { 
       myDFPlayer.playMp3Folder(8);
       currentTrack = 8;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
   if (digitCount == 5 && dialNum == 41287) {
-    if (currentTrack != 9) { 
       myDFPlayer.playMp3Folder(9);
       currentTrack = 9;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
-  if (digitCount == 5 && dialNum == 10554) {
-    if (currentTrack != 10) { 
+  if (digitCount == 5 && dialNum == 17554) {
       myDFPlayer.playMp3Folder(10);
       currentTrack = 10;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
   if (digitCount == 5 && dialNum == 39568) {
-    if (currentTrack != 11) { 
       myDFPlayer.playMp3Folder(11);
       currentTrack = 11;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
   if (digitCount == 5 && dialNum == 32485) {
-    if (currentTrack != 12) { 
       myDFPlayer.playMp3Folder(12);
       currentTrack = 12;
-    }
-    dialNum = 0;
-    digitCount = 0; 
+      dialNum = 0;
+      digitCount = 0; 
   }
 
-  if (digitCount == 5 && dialNum == 00067) {
-    if (currentTrack != 13) { 
+  if (digitCount == 5 && dialNum == 16767) {
+    // if (currentTrack != 13) { 
       myDFPlayer.playMp3Folder(13);
       currentTrack = 13;
+      dialNum = 0;
+      digitCount = 0; 
     }
-    dialNum = 0;
-    digitCount = 0; 
-  }
 
   if (myDFPlayer.available()) {
     printDetail(myDFPlayer.readType(), myDFPlayer.read());
